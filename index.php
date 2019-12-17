@@ -11,7 +11,7 @@
 		require __DIR__ . '/index.html';
 	} else if( preg_match('%^\/check(\?.*)?$%', $request)){
 		header("Content-Type:application/json");
-		require __DIR__ . '/checker.php';
+		require __DIR__ . '/check.php';
 	} else if ( $request == $cssFile ){
 		header("Content-type: text/css; charset: UTF-8");
 		require __DIR__ . $request;
