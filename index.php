@@ -12,7 +12,7 @@
 	} else if ( in_array( $request, $validFiles ) ){
 		require __DIR__ . $request;
 	} else if ( in_array($resquest, $imageFiles) ){
-		header(‘Content-Type: image/png’);
+		header("Content-Type: image/png");
 		require __DIR__ . $request;
 	}
 ?>
