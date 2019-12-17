@@ -16,7 +16,7 @@ function clickHandler(){
 	document.getElementById('button').innerHTML = "...loading";
 	var handle = document.getElementById('handleToCheck').value;
 	console.log('check handl', handle)
-	getRequest( window.document.URL + 'check?handle=' + handle);
+	getRequest( window.document.URL + 'check.php?handle=' + handle);
 }
 
 function resetImageIndicators(){
