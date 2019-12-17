@@ -2,17 +2,26 @@
 	$request = $_SERVER['REQUEST_URI'];
 	$jsFiles = ['/main.js'];
 	$cssFile = '/styles.css';
-	$imageFiles = ['/images/twitter.png','/images/instagram.png','/images/twitter_unavailable.png', '/images/twitter_available.png', '/images/instagram_unavailable.png','/images/instagram_available.png', '/images/favicon.ico'];
-
+	$imageFiles = ['/images/twitter.png','/images/instagram.png','/images/twitter_unavailable.png',
+		'/images/twitter_available.png', '/images/instagram_unavailable.png',
+		'/images/instagram_available.png','/images/favicon.ico'
+	];
+	
 	if($request == '/' || $request == ''){
 		require __DIR__ . '/index.html';
+	} else if( preg_match('%^\/check(\?.*)?$%', $request)){
+		header("Content-Type:application/json");
+		require __DIR__ . '/checker.php';
 	} else if ( $request == $cssFile ){
 		header("Content-type: text/css; charset: UTF-8");
 		require __DIR__ . $request;
-	} else if ( in_array( $request, $validFiles ) ){
+	} else if ( in_array( $request, $jsFiles ) ){
 		require __DIR__ . $request;
-	} else if ( in_array($resquest, $imageFiles) ){
+	} else if ( in_array($request, $imageFiles) ){
+		$fp = fopen('.'.$request, 'rb');
 		header("Content-Type: image/png");
-		require __DIR__ . $request;
+		header("Content-Length: " . filesize( '.'.$request ));
+		fpassthru($fp);
+		exit;
 	}
 ?>
