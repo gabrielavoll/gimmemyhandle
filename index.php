@@ -2,7 +2,7 @@
 	$request = $_SERVER['REQUEST_URI'];
 	$jsFiles = ['/main.js'];
 	$cssFile = '/styles.css';
-	$imageFiles = ['/images/twitter.png','/images/instagram.png','/images/twitter_unavailable.png', '/images/twitter_available.png', '/images/instagram_unavailable.png','/images/instagram_available.png'];
+	$imageFiles = ['/images/twitter.png','/images/instagram.png','/images/twitter_unavailable.png', '/images/twitter_available.png', '/images/instagram_unavailable.png','/images/instagram_available.png', '/images/favicon.ico'];
 
 	if($request == '/' || $request == ''){
 		require __DIR__ . '/index.html';

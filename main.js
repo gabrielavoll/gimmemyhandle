@@ -42,8 +42,6 @@ function getRequest(url, callback){
     	callback(JSON.stringify(xmlHttp.responseText));
     }
     xmlHttp.open("GET", url, true);
-	xmlHttp.setRequestHeader('Access-Control-Allow-Methods', 'GET');
-	xmlHttp.setRequestHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
     xmlHttp.setRequestHeader('Access-Control-Allow-Origin', '*')
     xmlHttp.send(null);
 }
