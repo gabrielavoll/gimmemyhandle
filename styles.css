@@ -6,3 +6,11 @@ div {
 img { 
 	width: 80px; 
 }
+
+#error{
+	margin: 10px auto 10px auto;
+    text-align: center;
+    height: 1.2em;
+    font-size: .9em;
+    color: #ab0111;
+}
