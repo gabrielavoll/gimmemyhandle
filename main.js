@@ -57,10 +57,6 @@ function clickHandler(){
 	return;
 }
 
-function testHit(){
-	getRequest(window.document.URL + 'test.php', testCallback)
-}
-
 function resetImageIndicators(){
 	document.getElementById('twitter').src = "/images/twitter.png";
 	document.getElementById('instagram').src = "/images/instagram.png";
@@ -105,12 +101,8 @@ function instagramResponseHandler(unavailable){
 	return;
 }
 
-function testCallback(res){
-	console.log('test', res);
-}
-
 function checkCallback(res, showInstaResponse, showTwitterResponse){
-	res = JSON.parse(xmlHttp.responseText);
+	res = JSON.parse(res);
 	if(showInstaResponse) instagramResponseHandler(res.instagram);
 	if(showTwitterResponse) twitterResponseHandler(res.twitter);
 	buttonReadyState();
