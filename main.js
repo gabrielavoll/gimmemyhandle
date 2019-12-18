@@ -53,8 +53,12 @@ function clickHandler(){
 		return;
 	}
 	buttonWaitingState();
-	getRequest( window.document.URL + url + '?handle=' + handle, instagramValid, twitterValid);
+	getRequest( window.document.URL + url + '?handle=' + handle, checkCallback, instagramValid, twitterValid);
 	return;
+}
+
+function testHit(){
+	getRequest(window.document.URL + 'test.php', testCallback)
 }
 
 function resetImageIndicators(){
@@ -101,15 +105,24 @@ function instagramResponseHandler(unavailable){
 	return;
 }
 
-function getRequest(url, showInstaResponse, showTwitterResponse){
+function testCallback(res){
+	console.log('test', res);
+}
+
+function checkCallback(res, showInstaResponse, showTwitterResponse){
+	res = JSON.parse(xmlHttp.responseText);
+	if(showInstaResponse) instagramResponseHandler(res.instagram);
+	if(showTwitterResponse) twitterResponseHandler(res.twitter);
+	buttonReadyState();
+}
+
+function getRequest(url, callback, showInstaResponse, showTwitterResponse){
 	var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
-	    if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
-	    	var res = JSON.parse(xmlHttp.responseText);
-	    	if(showInstaResponse) instagramResponseHandler(res.instagram);
-	    	if(showTwitterResponse) twitterResponseHandler(res.twitter);
-	    	buttonReadyState();
-	    }
+	    if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+	    	callback(xmlHttp.responseText, showInstaResponse, showTwitterResponse);
+	    else if(xmlHttp.status == 404)
+	    	console.log('rejected rquset', xmlHttp)
 	}
     xmlHttp.open("GET", url, true);
     xmlHttp.setRequestHeader('Access-Control-Allow-Origin', '*')

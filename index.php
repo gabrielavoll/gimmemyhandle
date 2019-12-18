@@ -23,5 +23,8 @@
 		header("Content-Length: " . filesize( '.'.$request ));
 		fpassthru($fp);
 		exit;
+	} else {
+		http_response_code(404);
 	}
+	exit;
 ?>
