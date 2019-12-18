@@ -10,8 +10,8 @@
 	$instagramUrl = "https://www.instagram.com/";
 	$twitterUrl = "https://twitter.com/";
 
-	$twitterFailure = "page doesn’t exist";
-	$instagramFailure = "page isn't available";
+	$twitterFailure = "that page doesn't exist";
+	$instagramFailure = "Page Not Found";
 
 	function request( $url, $curl ){
 		curl_setopt($curl, CURLOPT_URL, $url);
@@ -47,7 +47,5 @@
 		$response->twitter = false;
 
 	echo json_encode($response);
-	#echo $instagramResponse;
-	#echo $twitterResponse;
 	return true;
 ?>
