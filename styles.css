@@ -26,8 +26,9 @@ img {
 input {
 	border: 1px solid black;
     border-radius: 5px 0 0 5px;
-    height: 29px;
+    height: 35px;
     vertical-align: top;
+    padding: 10px;
 }
 
 button {
@@ -36,7 +37,9 @@ button {
     border-radius: 0px 5px 5px 0;
     color: white;
     width: 85px;
-    margin-left: -4px;
+    padding: 5px 10px;
+    height: 35px;
+    margin-left: -5px;
 }
 
 #footer { 
