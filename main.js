@@ -4,7 +4,11 @@ window.onload  = function (){
 	  if (event.keyCode === 13) {
 	    event.preventDefault();
 	    clickHandler();
-	  } else resetImageIndicators();
+	  } else {
+	  	resetImageIndicators();
+	  	setError("");
+	  	inputReadyState();
+	  }
 	  return;
 	});
 }
@@ -23,16 +27,31 @@ function buttonReadyState(){
 	return;
 }
 
+function inputErrorState(){
+	document.getElementById('button').className = "error-input error-button"
+	document.getElementById('handleToCheck').className = "error-input"
+}
+
+function inputReadyState(){
+	document.getElementById('button').className = ""
+	document.getElementById('handleToCheck').className = ""
+}
+
 function clickHandler(){
 	resetImageIndicators();
-	setError("");
 	var handle = document.getElementById('handleToCheck').value,
 		url = 'check';
 	if(window.document.URL.includes('herokuapp')) url = 'check.php';
-	if(handle == "") return setError("Please provide a handle to search")
+	if(handle == "") {
+		inputErrorState();
+		return setError("Please provide a handle to search")
+	}
 	var twitterValid = validTwitterHandle(handle);
 	var instagramValid = validInstagramHandle(handle);
-	if(!twitterValid && !instagramValid) return;
+	if(!twitterValid && !instagramValid){
+		inputErrorState();
+		return;
+	}
 	buttonWaitingState();
 	getRequest( window.document.URL + url + '?handle=' + handle, instagramValid, twitterValid);
 	return;

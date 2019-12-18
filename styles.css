@@ -14,3 +14,39 @@ img {
     font-size: .9em;
     color: #ab0111;
 }
+
+.error-input {
+	border-color: #ab0111;
+}
+
+.error-button {
+	background: #ab0111;
+}
+
+input {
+	border: 1px solid black;
+    border-radius: 5px 0 0 5px;
+    height: 29px;
+    vertical-align: top;
+}
+
+button {
+	border: 1px solid black;
+    background: black;
+    border-radius: 0px 5px 5px 0;
+    color: white;
+    width: 85px;
+    margin-left: -4px;
+}
+
+#footer { 
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+#footer img {
+	width: 200px;
+    margin-top: 40px;
+}
+
