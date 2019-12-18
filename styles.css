@@ -52,5 +52,19 @@ button {
 #footer img {
 	width: 200px;
     margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+#footer p {
+    padding: 15px 0 15px 0;
+    background: #e1dce3;
+    margin-bottom: 0;
+}
+
+a { color: #5a4f64; }
+
+a:hover {
+    color: #5a4f64;
+    text-decoration: underline;
 }
 
