@@ -4,7 +4,8 @@
 	$cssFile = '/styles.css';
 	$imageFiles = ['/images/twitter.png','/images/instagram.png','/images/twitter_unavailable.png',
 		'/images/twitter_available.png', '/images/instagram_unavailable.png',
-		'/images/instagram_available.png','/images/favicon.ico', '/images/key.png'
+		'/images/instagram_available.png','/images/favicon.ico', '/images/key.png',
+		'/images/twitter.gif','/images/instagram.gif'
 	];
 
 	if($request == '/' || $request == ''){

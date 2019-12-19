@@ -16,4 +16,6 @@
 ### Routes
 1. / => which serves up page, which allows up to check if a handle is available on instagram and/or twitter
 2. /handle => requires a handle param and returns and object { instagram: boolean, twitter: boolean } which represents if the handle in question is available 
+
+## To do
 3. /subscribe => will send you an email notification if your handle becomes available

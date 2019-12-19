@@ -13,10 +13,12 @@ window.onload  = function (){
 	});
 }
 
-function buttonWaitingState(){
+function buttonWaitingState(twitterValid, instgramValid){
 	var button = document.getElementById('button');
 	button.innerHTML = "...loading";
 	button.disabled = true;
+	if(twitterValid) document.getElementById('twitter').src = "/images/twitter.gif";
+	if(instgramValid) document.getElementById('instagram').src = "/images/instagram.gif";
 	return;
 }
 
@@ -52,7 +54,7 @@ function clickHandler(){
 		inputErrorState();
 		return;
 	}
-	buttonWaitingState();
+	buttonWaitingState(twitterValid, instagramValid);
 	getRequest( window.document.URL + url + '?handle=' + handle, checkCallback, instagramValid, twitterValid);
 	return;
 }
