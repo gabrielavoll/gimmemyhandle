@@ -49,8 +49,9 @@ button {
     bottom: 0;
 }
 
-#footer img {
-	width: 200px;
+img#key {
+	width: 240px;
+    max-width: 60%;
     margin-top: 40px;
     margin-bottom: 10px;
 }
@@ -68,3 +69,85 @@ a:hover {
     text-decoration: underline;
 }
 
+
+@media screen and (max-width: 735px){
+  div #icons { margin-top: 0px; }
+}
+
+@media screen and (max-width: 400px){
+  div #icons { margin-top: 30px; }
+}
+
+
+
+/*
+LOADING ANIMATION
+*/
+
+#icons {
+    display: block;
+    margin: -20px 0 0 0;
+}
+
+#twitter, #instagram {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin: 0 20px;
+}
+
+#icon {
+   width: 80px;
+    height: 80px;
+    display: block;
+    background-size: contain;
+    content: "";
+    position: absolute;
+    margin-top: 0;
+}
+
+#twitter #icon {
+    background-image: url(http://gimmemyhandle.herokuapp.com/images/twitter.png);
+}
+
+#twitter #icon.available {
+    background-image: url(http://gimmemyhandle.herokuapp.com/images/twitter_available.png);
+}
+
+#twitter #icon.unavailable {
+    background-image: url(http://gimmemyhandle.herokuapp.com/images/twitter_unavailable.png);
+}
+
+#instagram #icon {
+    background-image: url(http://gimmemyhandle.herokuapp.com/images/instagram.png);
+}
+
+#instagram #icon.available {
+    background-image: url(http://gimmemyhandle.herokuapp.com/images/instagram_available.png);
+}
+
+#instagram #icon.unavailable {
+    background-image: url(http://gimmemyhandle.herokuapp.com/images/instagram_unavailable.png);
+}
+
+#icon.init + #ring {
+    border: 3px solid #000;
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    left: 0px;
+    top: -18px;
+    -webkit-animation: pulsate 1s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    opacity: 0.0
+}
+
+#twitter #ring { border-radius: 50%; }
+#instagram #ring { border-radius: 30px; }
+
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(.7, .7); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {-webkit-transform: scale(1.5, 1.5); opacity: 0;}
+}

@@ -17,8 +17,8 @@ function buttonWaitingState(twitterValid, instgramValid){
 	var button = document.getElementById('button');
 	button.innerHTML = "...loading";
 	button.disabled = true;
-	if(twitterValid) document.getElementById('twitter').src = "/images/twitter.gif";
-	if(instgramValid) document.getElementById('instagram').src = "/images/instagram.gif";
+	if(twitterValid) document.getElementById('twitter').children[0].className = "init";
+	if(instgramValid) document.getElementById('instagram').children[0].className = "init";
 	return;
 }
 
@@ -60,14 +60,14 @@ function clickHandler(){
 }
 
 function resetImageIndicators(){
-	document.getElementById('twitter').src = "/images/twitter.png";
-	document.getElementById('instagram').src = "/images/instagram.png";
+	document.getElementById('twitter').children[0].className = "";
+	document.getElementById('instagram').children[0].className = "";
 	return;
 }
 
 function twitterResponseHandler(unavailable){
-	if(!unavailable) document.getElementById('twitter').src = "/images/twitter_unavailable.png";
-	else document.getElementById('twitter').src = "/images/twitter_available.png";
+	if(!unavailable) document.getElementById('twitter').children[0].className = "unavailable";
+	else document.getElementById('twitter').children[0].className = "available";
 	return;
 }	
 
@@ -98,8 +98,8 @@ function validInstagramHandle(handle){
 }
 
 function instagramResponseHandler(unavailable){
-	if(!unavailable) document.getElementById('instagram').src = "/images/instagram_unavailable.png";
-	else document.getElementById('instagram').src = "/images/instagram_available.png";
+	if(!unavailable) document.getElementById('instagram').children[0].className = "unavailable";
+	else document.getElementById('instagram').children[0].className = "available";
 	return;
 }
 
