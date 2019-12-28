@@ -1,0 +1,11 @@
+{
+    "name": "gato333/no-framework",
+    "description": "allows up to check if a handle is available on instagram and/or twitter",
+    "authors": [
+        {
+            "name": "Gabriela Voll",
+            "email": "gato333@gmail.com"
+        }
+    ],
+    "require": {}
+}
