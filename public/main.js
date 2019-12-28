@@ -41,9 +41,7 @@ function inputReadyState(){
 
 function clickHandler(){
 	resetImageIndicators();
-	var handle = document.getElementById('handleToCheck').value,
-		url = 'check';
-	if(window.document.URL.includes('herokuapp')) url = 'check.php';
+	var handle = document.getElementById('handleToCheck').value;
 	if(handle == "") {
 		inputErrorState();
 		return setError("Please provide a handle to search")
@@ -55,7 +53,7 @@ function clickHandler(){
 		return;
 	}
 	buttonWaitingState(twitterValid, instagramValid);
-	getRequest( window.document.URL + url + '?handle=' + handle, checkCallback, instagramValid, twitterValid);
+	getRequest( window.document.URL + 'check?handle=' + handle, checkCallback, instagramValid, twitterValid);
 	return;
 }
 
