@@ -1,17 +1,25 @@
 <?php
+	const INSTAGRAM_URL = "https://www.instagram.com/";
+	const TWITTER_URL = "https://twitter.com/";
+	const TWITTER_FAIL = "that page doesn't exist";
+	const INSTAGRAM_FAIL = "Page Not Found";
 
-	if(is_null($_GET["handle"] )){
-		http_response_code(400);
-		echo 'gimme a handle to check on';
-		return true;
+	function checkHandle( $handle ){
+		if(is_null($handle)){
+			http_response_code(400);
+			return 'gimme a handle to check on';
+		}
+
+		$curl = curl_init();
+		$instagramResponse = request( INSTAGRAM_URL . $handle, $curl);
+		$twitterResponse = request( TWITTER_URL . $handle, $curl );
+		curl_close($curl);
+
+		$response = new stdClass();
+		$response->instagram = parseResponse($instagramResponse, INSTAGRAM_FAIL);
+		$response->twitter = parseResponse($twitterResponse, TWITTER_FAIL);
+		return json_encode($response);
 	}
-	$handle = $_GET["handle"];
-
-	$instagramUrl = "https://www.instagram.com/";
-	$twitterUrl = "https://twitter.com/";
-
-	$twitterFailure = "that page doesn't exist";
-	$instagramFailure = "Page Not Found";
 
 	function request( $url, $curl ){
 		curl_setopt($curl, CURLOPT_URL, $url);
@@ -23,29 +31,17 @@
 		$curl_response = curl_exec($curl);
 
 		if ($curl_response === false) {
-			echo "exploded";
 		    $info = curl_getinfo($curl);
 		    curl_close($curl);
-		    die('error occured during curl exec. Additioanl info: ' . var_export($info));
+		    return 'error occured during curl exec. Additioanl info: ' . var_export($info);
 		}
 		return $curl_response;
 	}
-	$curl = curl_init();
-	$instagramResponse = request( $instagramUrl . $handle, $curl);
-	$twitterResponse = request( $twitterUrl . $handle, $curl );
-	curl_close($curl);
-	$response = new stdClass();
-	# available
-	if( strpos($instagramResponse, $instagramFailure) !== false )
-		$response->instagram = true;
-	else 
-		$response->instagram = false;
-	# available
-	if( strpos($twitterResponse, $twitterFailure) !== false)
-		$response->twitter = true;
-	else 
-		$response->twitter = false;
 
-	echo json_encode($response);
-	return true;
+	function parseResponse($res, $failMessage){
+		# meaning its available, since its not taken
+		if( strpos($res, $failMessage) !== false )
+			return true;
+		return false;
+	}
 ?>
