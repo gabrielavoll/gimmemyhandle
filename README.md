@@ -1,6 +1,39 @@
 # GIMMEMYHANDLE
 
-### How to Run
+### How to Run with Apache2 server
+1. Pull down repo from Github
+2. Install PHP locally if it isnt already. 
+3. Install Apache locally if it isnt already. 
+4. Make sure Apache is correctly configured for serving the php app
+5. Add a new .conf for this repository to /etc/apache2/vhosts/. My conf, gimmemyhandle.catzilla.conf:
+```
+<VirtualHost *:80>
+        ServerAdmin YOUR_EMAIL
+        DocumentRoot "THIS_REPOS_PATH/gimmemyhandle/public"
+        ServerName gimmemyhandle.catzilla
+        ServerAlias www.gimmemyhandle.catzilla
+        ErrorLog "/private/var/log/apache2/gimmemyhandle.catzilla-error_log"
+        CustomLog "/private/var/log/apache2/gimmemyhandle.catzilla-access_log" common
+        <Directory "THIS_REPOS_PATH/gimmemyhandle/public">
+            AllowOverride All
+            Require all granted
+        </Directory>
+</VirtualHost>
+```
+6. restart apache locally
+```
+	sudo su -
+	apachectl restart
+```
+7. add this line to /etc/hosts: (this corresponds to the ServerName/ServerAlias in gimmemyhandle.catzilla.conf, which can be anything)
+```
+127.0.0.1       gimmemyhandle.catzilla
+```
+8. go to url `gimmemyhandle.catzilla:80` in a web browers
+
+
+### How to Run with built-in PHP server
+THIS WILL WORK since this app doesnt curl itself, we use JS to request our own server
 1. Pull down repo from Github
 ```
 	git clone git@github.com:gato333/gimmemyhandle.git
